@@ -1,0 +1,26 @@
+[{
+    "name": "Authentication",
+    "api": [{
+        "name": "renderLogin",
+        "requestType": "GET",
+        "URL": "/login",
+        "description": "render the login page",
+        "parameters": []
+    }, {
+        "name": "login",
+        "requestType": "POST",
+        "URL": "/login",
+        "description": "Login to website",
+        "parameters": [{
+            "name": "email",
+            "optional": true,
+            "example": ["someone@microsoft.co", "john@doe.com"],
+            "description": "The username and email of the user. Must be unique."
+        }, {
+            "name": "password",
+            "optional": true,
+            "example": ["123456", "qwerty"],
+            "description": "The password of the user. Not encrypted."
+        }]
+    }]
+}]
