@@ -1,0 +1,46 @@
+div.api-row div.request-type {
+  width: 70px;
+  color: #fff;
+  font-weight: 700;
+  height: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+}
+
+div.api-row {
+  height: 30px;
+  margin: 10px;
+}
+
+div.api-row.get {
+  background-color: #d9edf7;
+}
+
+div.api-row.post {
+  background-color: #dff0d8;
+}
+
+div.api-row.put {
+  background-color: #fcf8e3;
+}
+
+div.api-row.delete {
+  background-color: #f2dede;
+}
+
+div.api-row.get div.request-type {
+  background-color: #0f6ab4;
+}
+
+div.api-row.post div.request-type {
+  background-color: #10a54a;
+}
+
+div.api-row.put div.request-type {
+  background-color: #c5862b;
+}
+
+div.api-row.delete div.request-type {
+  background-color: #a41e22;
+}
