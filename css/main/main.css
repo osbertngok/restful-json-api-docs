@@ -1,3 +1,4 @@
+/*
 div.api-row>div.api-row-detail>h3,
 div.api-row>div.api-row-detail>h4,
 div.api-row>div.api-row-detail>p,
@@ -7,6 +8,7 @@ div.api-row>div.api-row-detail>table
   margin-left: 10px;
   margin-right: 10px;
 }
+*/
 
 div.api-row>div.api-row-detail>*.page-header {
   border-color: #fff;
@@ -68,6 +70,7 @@ div.api-row>div.api-row-title>div.request-type {
   padding-bottom: 5px;
   text-align: center;
   display: inline-block;
+  margin-left: -15px;
 }
 
 div.api-row.get>div.api-row-title>div.request-type {

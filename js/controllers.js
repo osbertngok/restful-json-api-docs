@@ -41,7 +41,6 @@ define(['angular', 'jquery', 'd3', 'services'], function(angular, $, d3) {
             function($scope, $routeParams) {
                 d3.select('#breadcrumb-app').text($routeParams.app);
                 d3.json('json/' + $routeParams.app + "/api.json", function(error, data) {
-                    console.log(data);
                     if (error) {
                         console.log(error);
                     } else {
@@ -70,6 +69,7 @@ define(['angular', 'jquery', 'd3', 'services'], function(angular, $, d3) {
                                     .classed(d.requestType.toLowerCase(), true)
                                     .append('div')
                                     .classed('api-row-title', true)
+                                    .classed('container-fluid', true)
                                     .on('click', function(d) {
                                         $(this.parentNode).find('div.api-row-detail')
                                             .toggleClass('hidden');
@@ -103,6 +103,7 @@ define(['angular', 'jquery', 'd3', 'services'], function(angular, $, d3) {
                                 d3.select(this)
                                     .append('div')
                                     .classed('api-row-detail', true)
+                                    .classed('container-fluid', true)
                                     .classed('hidden', true)
 
                                 .each(function(d) {
@@ -156,9 +157,15 @@ define(['angular', 'jquery', 'd3', 'services'], function(angular, $, d3) {
                                             .append('code')
 
                                         .each(function(d) {
-                                            d3.select(this)
-                                                .append('span')
-                                                .text('{ ' + "\n")
+                                            if (d.responseArray) {
+                                                d3.select(this)
+                                                    .append('span')
+                                                    .text('[{ ' + "\n")
+                                            } else {
+                                                d3.select(this)
+                                                    .append('span')
+                                                    .text('{ ' + "\n")
+                                            }
                                             d3.select(this).selectAll('span.param-row')
                                                 .data(d.response)
                                                 .enter()
@@ -167,9 +174,15 @@ define(['angular', 'jquery', 'd3', 'services'], function(angular, $, d3) {
                                                 .text(function(d) {
                                                     return '  "' + d.name + '" : "' + d.example[0] + '",' + "\n"
                                                 });
-                                            d3.select(this)
-                                                .append('span')
-                                                .text('}')
+                                            if (d.responseArray) {
+                                                d3.select(this)
+                                                    .append('span')
+                                                    .text('}, ...]');
+                                            } else {
+                                                d3.select(this)
+                                                    .append('span')
+                                                    .text('}');
+                                            }
                                         })
                                     } else if (d.response) {
                                         d3.select(this)
@@ -226,7 +239,6 @@ define(['angular', 'jquery', 'd3', 'services'], function(angular, $, d3) {
                                                 .append('tbody')
 
                                             .each(function(d) {
-                                                console.log(d);
                                                 d3.select(this).selectAll('tr')
                                                     .data(d.parameters)
                                                     .enter()
@@ -308,7 +320,6 @@ define(['angular', 'jquery', 'd3', 'services'], function(angular, $, d3) {
                                                 .append('tbody')
 
                                             .each(function(d) {
-                                                console.log(d);
                                                 d3.select(this).selectAll('tr')
                                                     .data(d.response)
                                                     .enter()
