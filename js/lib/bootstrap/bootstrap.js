@@ -1726,7 +1726,6 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     this.scrollHeight = this.getScrollHeight()
 
     var self     = this
-
     this.$body
       .find(this.selector)
       .map(function () {
@@ -1815,7 +1814,6 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   }
 
   var old = $.fn.scrollspy
-
   $.fn.scrollspy             = Plugin
   $.fn.scrollspy.Constructor = ScrollSpy
 
@@ -1984,7 +1982,6 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   // AFFIX CLASS DEFINITION
   // ======================
-
   var Affix = function (element, options) {
     this.options = $.extend({}, Affix.DEFAULTS, options)
 

@@ -1,7 +1,4 @@
 [{
     "name": "example",
     "description": "Sample Application API Specification"
-}, {
-    "name": "SPA",
-    "description": "Social Productivity Application"
 }]

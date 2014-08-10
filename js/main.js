@@ -5,10 +5,12 @@ require.config({
     baseUrl: './js',
     paths: {
         jquery: 'lib/jquery/jquery.min',
-        angular: 'lib/angularjs/angular.min',
+        angular: 'lib/angularjs/angular',
         'angular.route': 'lib/angularjs/angular-route.min',
+        'angular.uiroute': 'lib/angularjs/angular-ui-router',
         d3: 'lib/d3/d3.min',
-        AppListController: 'controllers/app_list_controller'
+        AppListController: 'controllers/app_list_controller',
+        bootstrap: 'lib/bootstrap/bootstrap'
     },
     shim: {
         "angular": {
@@ -16,6 +18,12 @@ require.config({
         },
         "angular.route": {
             deps: ["angular"]
+        },
+        "angular.uiroute": {
+            deps: ["angular"]
+        },
+        bootstrap: {
+            deps: ["jquery"]
         }
     }
 });
