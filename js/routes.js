@@ -12,14 +12,24 @@ define(['angular', 'app'], function(angular, app) {
                 'appSelection', {
                     url: '/view',
                     templateUrl: 'html/partials/app_list.html',
-                    controller: 'AppListController'
+                    controller: 'AppListController',
+                    resolve: {
+                        dataPromise : function($http) {
+                            return $http({method: 'GET', url: 'json/app_list.json'});
+                        }
+                    }
                 })
             .state(
                 'api', {
                     abstract: true,
                     url: '/view/:app/api',
                     templateUrl: 'html/partials/app_api_list.html',
-                    controller: 'AppAPIListController'
+                    controller: 'AppAPIListController',
+                    resolve: {
+                        dataPromise: function($http, $stateParams) {
+                            return $http({method: 'GET', url: 'json/' + $stateParams.app + '/api.json'});
+                        }
+                    }
                 })
             .state(
                 'api.list', {

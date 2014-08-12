@@ -8,10 +8,108 @@
 </div>
 <div>
 	<h1>List of Available API:</h1>
-	<div class="col-md-9" id="api-category-list">
+	<div class="col-md-9" id="api-category-list" bs-scrollspy="">
+    <div class="api-category" ng-repeat="category in data">
+      <h2 class="page-header" id="view__{{$stateParams.app}}__api__{{category.name}}">{{category.displayName}}</h2>
+      <div class="api-row {{api.requestType | lowercase}}" id="view__{$stateParams.app}}__api__{{category.name}}__{{api.name}}" ng-repeat="api in category.api">
+        <div class="api-row-title container-fluid">
+          <div class="request-type">{{api.requestType}}</div>
+          <div class="url">{{api.URL}}</div>
+          <div class="description">{{api.description}}</div>
+        </div>
+        <div class="api-row-details container-fluid">
+          <h3 class="page-header">Examples</h3>
+          <h4>Request</h4>
+          <pre ng-if="hasArrayAttribute(api, 'parameters')"><code>{ 
+<span class="param-row {{parameter.required?'':'optional'}}" ng-repeat="parameter in api.parameters">  "{{parameter.name}}" : "{{parameter.example[0]}}",
+</span><span>}</span></code></pre>
+          <p ng-if="!hasArrayAttribute(api, 'parameters')">None.</p>
+          <h4>Response</h4>
+          <pre ng-if="hasArrayAttribute(api, 'response')"><code><span>{{api.responseArray?'[':''}}{</span> 
+<span class="param-row" ng-repeat="responseParameter in api.response">  "{{responseParameter.name}}" : "{{responseParameter.example[0]}}",
+</span><span>}{{api.responseArray?', ...]':''}}</span></code></pre>
+          <p ng-if="!hasArrayAttribute(api, 'response')">None.</p>
+          <h3 class="page-header">Request Parameter List</h3>
+          <table class="table" ng-if="hasArrayAttribute(api, 'parameters')">
+            <thead>
+              <tr>
+                <th>Field Name</th>
+                <th>Required?</th>
+                <th>Description</th>
+                <th>Example 1</th>
+                <th>Example 2</th>
+                <th>Example 3</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="parameter in api.parameters">
+                <td>{{parameter.name}}</td>
+                <td>{{parameter.required?'Required':'Optional'}}</td>
+                <td>{{parameter.description}}</td>
+                <td>{{isUndefined(parameter.example[0])?'':parameter.example[0]}}</td>
+                <td>{{isUndefined(parameter.example[1])?'':parameter.example[1]}}</td>
+                <td>{{isUndefined(parameter.example[2])?'':parameter.example[2]}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <p ng-if="!hasArrayAttribute(api, 'response')">None.</p>
+          <h3 class="page-header">Response Parameter List</h3>
+          <table class="table" ng-if="hasArrayAttribute(api, 'response')">
+            <thead>
+              <tr>
+                <th>Field Name</th>
+                <th>Description</th>
+                <th>Example 1</th>
+                <th>Example 2</th>
+                <th>Example 3</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="responseParameter in api.response">
+                <td>{{responseParameter.name}}</td>
+                <td>{{responseParameter.description}}</td>
+                <td>{{isUndefined(responseParameter.example[0])?'':responseParameter.example[0]}}</td>
+                <td>{{isUndefined(responseParameter.example[1])?'':responseParameter.example[1]}}</td>
+                <td>{{isUndefined(responseParameter.example[2])?'':responseParameter.example[2]}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <p ng-if="!hasArrayAttribute(api, 'response')">None.</p>
+          <h3 class="page-header">Errors</h3>
+          <table class="table" ng-if="hasArrayAttribute(api, 'errors')">
+            <thead>
+              <tr>
+                <th>HTTP Code</th>
+                <th>Error Code</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="error in api.errors">
+                <td>{{error.httpCode}}</td>
+                <td>{{error.code}}</td>
+                <td>{{error.description}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <p ng-if="!hasArrayAttribute(api, 'errors')">None.</p>
+        </div>
+      </div>
+    </div>
 	</div>
   <div class="col-md-3" id="api-table-of-contents">
-    <div class="api-sidebar hidden-print hidden-xs hidden-sm">
+    <div class="api-sidebar hidden-print hidden-xs hidden-sm" data-offset-top="-200" bs-affix="" bs-scrollspy-list="">
+      <ul class="api-category-list-toc nav">
+        <li class="api-category-toc" ng-repeat="category in data">
+          <a class="api-category-title-toc" ui-sref="api.category({app:'{{$stateParams.app}}', category:'{{category.name}}'})" data-target="#view__{{$stateParams.app}}__api__{{category.name}}">{{category.displayName}}</a>
+          <ul class="nav">
+            <li class="api-row-toc {{api.requestType | lowercase}}" ng-repeat="api in category.api">
+              <div class="request-type" />
+              <a class="url" ui-sref="api.details({app:'{{$stateParams.app}}', category:'{{category.name}}', api:'{{api.name}}'})" data-target="#view__{$stateParams.app}}__api__{{category.name}}__{{api.name}}">{{api.URL}}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </div>
   <div ui-view></div>

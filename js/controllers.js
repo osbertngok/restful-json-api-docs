@@ -1,19 +1,26 @@
 'use strict';
 
-define(['angular', 'jquery', 'd3', 'services'], function(angular, $, d3) {
+define(['angular', 'services'], function(angular) {
 
     return angular.module('apiApp.controllers', ['apiApp.services'])
 
     .controller('AppListController',
-        function($scope, $uiService) {
+        function($scope, dataPromise) {
             console.log('DEBUG :: ' + 'AppListController called');
-            $uiService.initializeAppList();
+            $scope.data = dataPromise.data;
         }
     )      
     .controller('AppAPIListController',
-        function($scope, $uiService, $state, $rootScope) {
+        function($scope, $stateParams, dataPromise) {
             console.log('DEBUG :: ' + 'AppAPIListController called');
-            $uiService.initializeAppAPIList($scope);
+            $scope.data = dataPromise.data;
+            $scope.$stateParams = $stateParams;
+            $scope.hasArrayAttribute = function (api, attribute) {
+                return api && api[attribute] && api[attribute] instanceof Array && api[attribute].length > 0;
+            };
+            $scope.isUndefined = function(p) {
+                return p === undefined;
+            };
         }
     );
 });

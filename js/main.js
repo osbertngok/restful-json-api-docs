@@ -8,8 +8,8 @@ require.config({
         angular: 'lib/angularjs/angular',
         'angular.route': 'lib/angularjs/angular-route.min',
         'angular.uiroute': 'lib/angularjs/angular-ui-router',
+        "angular.strap": 'lib/angular-strap/angular-strap',
         d3: 'lib/d3/d3.min',
-        AppListController: 'controllers/app_list_controller',
         bootstrap: 'lib/bootstrap/bootstrap'
     },
     shim: {
@@ -20,6 +20,9 @@ require.config({
             deps: ["angular"]
         },
         "angular.uiroute": {
+            deps: ["angular"]
+        },
+        "angular.strap": {
             deps: ["angular"]
         },
         bootstrap: {
