@@ -105,7 +105,11 @@
           <ul class="nav">
             <li class="api-row-toc {{api.requestType | lowercase}}" ng-repeat="api in category.api">
               <div class="request-type" />
-              <a class="url" ui-sref="api.details({app:'{{$stateParams.app}}', category:'{{category.name}}', api:'{{api.name}}'})" data-target="#view__{{$stateParams.app}}__api__{{category.name}}__{{api.name}}" o-scrollspy-list-a="">{{api.URL}}</a>
+              <a class="url bt" ui-sref="api.details({app:'{{$stateParams.app}}', category:'{{category.name}}', api:'{{api.name}}'})" data-target="#view__{{$stateParams.app}}__api__{{category.name}}__{{api.name}}" o-scrollspy-list-a="">{{api.URL}}
+                <span class="thebubble">
+                  <span class="middle">{{api.description}}</span>
+                </span>
+              </a>
             </li>
           </ul>
         </li>

@@ -22,7 +22,7 @@ define(['angular', 'jquery'], function(angular, $) {
       }
       if ($('#' + anchorName).length > 0) {
         $(document.body).animate({
-          'scrollTop':   $('#' + anchorName).offset().top - 150
+          'scrollTop':   $('#' + anchorName).offset().top - 100
         }, 200);
       }
     };
