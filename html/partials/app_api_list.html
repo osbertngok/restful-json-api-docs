@@ -99,11 +99,11 @@
 	</div>
   <div class="col-md-3" id="api-table-of-contents">
     <div class="api-sidebar hidden-print hidden-xs hidden-sm" data-offset-top="-200" bs-affix="">
-      <ul class="api-category-list-toc nav" o-scrollspy-list-ul="">
-        <li class="api-category-toc" ng-repeat="category in data" o-scrollspy-list-li="">
+      <ul class="api-category-list-toc nav">
+        <li class="api-category-toc" ng-repeat="category in data">
           <a class="api-category-title-toc" ui-sref="api.category({app:'{{$stateParams.app}}', category:'{{category.name}}'})" data-target="{{'#view__' + $stateParams.app + '__api__' + category.name}}" o-scrollspy-list-a="">{{category.displayName}}</a>
-          <ul class="nav" o-scrollspy-list-ul="">
-            <li class="api-row-toc {{api.requestType | lowercase}}" ng-repeat="api in category.api" o-scrollspy-list-li="">
+          <ul class="nav">
+            <li class="api-row-toc {{api.requestType | lowercase}}" ng-repeat="api in category.api">
               <div class="request-type" />
               <a class="url" ui-sref="api.details({app:'{{$stateParams.app}}', category:'{{category.name}}', api:'{{api.name}}'})" data-target="#view__{{$stateParams.app}}__api__{{category.name}}__{{api.name}}" o-scrollspy-list-a="">{{api.URL}}</a>
             </li>

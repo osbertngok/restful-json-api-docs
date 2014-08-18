@@ -32,13 +32,36 @@ define(['angular', 'jquery'], function(angular, $) {
     var scrollspyService = {};
 
     scrollspyService.$body          = $('body');
-    scrollspyService.$scrollElement =s $(window);
+    scrollspyService.$scrollElement = $(window);
     scrollspyService.selector       = '#api-table-of-contents .nav li > a';
     scrollspyService.activeTarget   = null;
 
     scrollspyService.options = {offset : 200, target: '#api-table-of-contents'};
 
     scrollspyService.scrollWatches = [];
+
+    scrollspyService.dirty = false;
+
+    scrollspyService.setDirty = function() {
+      scrollspyService.dirty = true;
+    }
+
+    scrollspyService.isDirty = function() {
+      return scrollspyService.dirty;
+    }
+
+    scrollspyService.addWatch = function(offset, element) {
+      scrollspyService.scrollWatches.push({
+        'offset': offset,
+        'element': element
+      });
+      scrollspyService.setDirty();
+    }
+
+    scrollspyService.clear = function () {
+      scrollspyService.scrollWatches = [];
+      scrollspyService.dirty = false;
+    }
 
     scrollspyService.getScrollHeight = function () {
       return scrollspyService.$scrollElement[0].scrollHeight || Math.max(scrollspyService.$body[0].scrollHeight, document.documentElement.scrollHeight)
@@ -50,6 +73,13 @@ define(['angular', 'jquery'], function(angular, $) {
       var maxScroll    = scrollspyService.options.offset + scrollHeight - scrollspyService.$scrollElement.height()
       var activeTarget = scrollspyService.activeTarget
       var i
+
+      if (scrollspyService.isDirty()) {
+        scrollspyService.scrollWatches.sort(function(a,b){
+          return a.offset - b.offset;
+        });
+        scrollspyService.dirty = false;
+      }
 
       if (scrollspyService.scrollHeight != scrollHeight) {
         scrollspyService.refresh()

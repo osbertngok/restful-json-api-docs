@@ -11,7 +11,7 @@ define(['angular', 'services'], function(angular) {
         }
     )      
     .controller('AppAPIListController',
-        function($scope, $stateParams, dataPromise) {
+        function($scope, $stateParams, dataPromise, $scrollspyService) {
             console.log('DEBUG :: ' + 'AppAPIListController called');
             $scope.data = dataPromise.data;
             $scope.$stateParams = $stateParams;
@@ -21,9 +21,7 @@ define(['angular', 'services'], function(angular) {
             $scope.isUndefined = function(p) {
                 return p === undefined;
             };
-            $scope.$on('$viewContentLoaded', function(){
-                console.log('$viewContentLoaded loaded');
-            })
+            $scrollspyService.clear();
         }
     );
 });
