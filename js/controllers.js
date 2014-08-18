@@ -21,6 +21,9 @@ define(['angular', 'services'], function(angular) {
             $scope.isUndefined = function(p) {
                 return p === undefined;
             };
+            $scope.$on('$viewContentLoaded', function(){
+                console.log('$viewContentLoaded loaded');
+            })
         }
     );
 });

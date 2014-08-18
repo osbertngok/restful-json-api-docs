@@ -10,8 +10,8 @@
 	<h1>List of Available API:</h1>
 	<div class="col-md-9" id="api-category-list" bs-scrollspy="">
     <div class="api-category" ng-repeat="category in data">
-      <h2 class="page-header" id="view__{{$stateParams.app}}__api__{{category.name}}">{{category.displayName}}</h2>
-      <div class="api-row {{api.requestType | lowercase}}" id="view__{$stateParams.app}}__api__{{category.name}}__{{api.name}}" ng-repeat="api in category.api">
+      <h2 class="page-header" id="view__{{$stateParams.app}}__api__{{category.name}}" o-scrollspy-href="">{{category.displayName}}</h2>
+      <div class="api-row {{api.requestType | lowercase}}" id="view__{{$stateParams.app}}__api__{{category.name}}__{{api.name}}" ng-repeat="api in category.api" o-scrollspy-href="">
         <div class="api-row-title container-fluid">
           <div class="request-type">{{api.requestType}}</div>
           <div class="url">{{api.URL}}</div>
@@ -98,14 +98,14 @@
     </div>
 	</div>
   <div class="col-md-3" id="api-table-of-contents">
-    <div class="api-sidebar hidden-print hidden-xs hidden-sm" data-offset-top="-200" bs-affix="" bs-scrollspy-list="">
-      <ul class="api-category-list-toc nav">
-        <li class="api-category-toc" ng-repeat="category in data">
-          <a class="api-category-title-toc" ui-sref="api.category({app:'{{$stateParams.app}}', category:'{{category.name}}'})" data-target="#view__{{$stateParams.app}}__api__{{category.name}}">{{category.displayName}}</a>
-          <ul class="nav">
-            <li class="api-row-toc {{api.requestType | lowercase}}" ng-repeat="api in category.api">
+    <div class="api-sidebar hidden-print hidden-xs hidden-sm" data-offset-top="-200" bs-affix="">
+      <ul class="api-category-list-toc nav" o-scrollspy-list-ul="">
+        <li class="api-category-toc" ng-repeat="category in data" o-scrollspy-list-li="">
+          <a class="api-category-title-toc" ui-sref="api.category({app:'{{$stateParams.app}}', category:'{{category.name}}'})" data-target="{{'#view__' + $stateParams.app + '__api__' + category.name}}" o-scrollspy-list-a="">{{category.displayName}}</a>
+          <ul class="nav" o-scrollspy-list-ul="">
+            <li class="api-row-toc {{api.requestType | lowercase}}" ng-repeat="api in category.api" o-scrollspy-list-li="">
               <div class="request-type" />
-              <a class="url" ui-sref="api.details({app:'{{$stateParams.app}}', category:'{{category.name}}', api:'{{api.name}}'})" data-target="#view__{$stateParams.app}}__api__{{category.name}}__{{api.name}}">{{api.URL}}</a>
+              <a class="url" ui-sref="api.details({app:'{{$stateParams.app}}', category:'{{category.name}}', api:'{{api.name}}'})" data-target="#view__{{$stateParams.app}}__api__{{category.name}}__{{api.name}}" o-scrollspy-list-a="">{{api.URL}}</a>
             </li>
           </ul>
         </li>
