@@ -24,6 +24,12 @@ define(['angular', 'jquery'], function(angular, $) {
         $(document.body).animate({
           'scrollTop':   $('#' + anchorName).offset().top - 100
         }, 200);
+      } else {
+        setTimeout(function(){
+          $(document.body).animate({
+            'scrollTop':   $('#' + anchorName).offset().top - 100
+          }, 200);
+        }, 100);
       }
     };
     return uiService;

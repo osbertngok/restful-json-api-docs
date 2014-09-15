@@ -42,6 +42,7 @@ define(['angular', 'app'], function(angular, app) {
                 'api.category', {
                     url: '/:category',
                     controller: function($scope, $stateParams, $uiService) {
+                        console.log('api.category controller called');
                         $uiService.scrollTo($stateParams.app, $stateParams.category);
                     }
                 })
